@@ -1,0 +1,3 @@
+[submodule "games-backend"]
+	path = games-backend
+	url = git@github.com:HuiGong-dev/games-backend.git
