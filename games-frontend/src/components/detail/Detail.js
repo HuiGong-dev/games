@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Trailer from '../Trailer';
 import Info from '../Info';
@@ -11,20 +11,18 @@ const Detail = ({ getSingleGame, game, reviews, setReviews }) => {
 
   useEffect(() => {
     getSingleGame(steamId);
-  }, []);
+  }, [getSingleGame, steamId]);
 
   return (
-    <Container className="flex auto-max justify-center  max-w-full h-full mt-10">
-      <Container className={`flex flex-col auto-max h-full bg-neutral-950 `}>
-        <Container className="flex h-1/2 flex-row content-start justify-between">
-          <Trailer videoLink={game?.movies[1]} />
-          <Info
-            name={game?.name}
-            genres={game?.genres}
-            header={game?.header}
-            releaseDate={game?.releaseDate}
-          />
-        </Container>
+    <Container className="flex auto-max mt-5 justify-center  max-w-full h-full bg-black">
+      <Container className={`flex flex-col auto-max h-full `}>
+        <Trailer videoLink={game?.movies[1]} />
+        <Info
+          name={game?.name}
+          genres={game?.genres}
+          header={game?.header}
+          releaseDate={game?.releaseDate}
+        />
 
         <Reviews
           reviews={reviews}

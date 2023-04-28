@@ -1,31 +1,103 @@
 import React from 'react';
+import styled from 'styled-components';
+import tw from 'twin.macro';
+
+const InfoContainer = styled.div`
+  ${tw`
+    flex
+    flex-col
+    w-full
+    my-5
+    justify-center
+    p-5
+    border 
+    rounded-md 
+    drop-shadow-md 
+    bg-neutral-900 
+    border-neutral-900
+  `}
+`;
+
+const UnderContainer = styled.div`
+  ${tw`
+  h-full
+  w-full
+  flex 
+  flex-row
+  p-2 
+  border 
+  rounded-md  
+  drop-shadow-md 
+  bg-neutral-900 
+  border-neutral-900
+`}
+  @media (max-width: 900px) {
+    ${tw`
+      flex
+      flex-col
+      justify-center
+    `}
+  }
+`;
+
+const UnderLeftContainer = styled.div`
+  ${tw`
+    h-auto
+    w-auto
+    max-w-md
+
+  `}
+`;
+const UnderRightContainer = styled.div`
+  ${tw`
+    h-auto
+    w-auto
+    flex 
+    flex-col 
+    px-10 
+    pt-5
+    justify-start
+    text-xl
+  `}
+  @media (max-width: 900px) {
+    ${tw`
+      px-0
+      text-lg
+    `}
+  }
+`;
 
 const Info = ({ name, genres, header, releaseDate }) => {
   return (
-    <div className="flex w-1/3 flex-col p-2 justify-center items-center border rounded-md mx-2 drop-shadow-md bg-neutral-900 border-neutral-900">
-      <strong className="text-xl px-5 pb-2">Game Information</strong>
-      <div className="flex w-full flex-col p-2 justify-normal  border rounded-md  drop-shadow-md bg-neutral-900 border-neutral-900">
-        {header != null ? <img src={header} alt="game poster" /> : 'name'}
-        <div className="flex flex-col px-5 py-5 justify-normal">
-          <div className="flex flex-row ">
-            <strong className="pr-2">Name:</strong> {name}
+    <InfoContainer>
+      <strong className="text-xl mb-2 mx-2 lg:text-2xl text-white hover:text-electricblue">
+        Game Information
+      </strong>
+      <UnderContainer>
+        <UnderLeftContainer>
+          {header != null ? <img src={header} alt="game poster" /> : 'name'}
+        </UnderLeftContainer>
+        <UnderRightContainer>
+          <div className="flex flex-row items-center">
+            <strong className="pr-2 text-electricblue ">Name:</strong> {name}
           </div>
-          <div className="flex flex-row py-2">
-            <strong className="pr-2">Genre:</strong>{' '}
+          <div className="flex flex-row items-center">
+            <strong className="pr-2 text-electricblue ">Genre:</strong>{' '}
             {genres?.map((genre, index) => {
               return (
-                <span key={index} className="pl-1">
+                <span key={index} className="ml-2">
                   {genre}
                 </span>
               );
             })}
           </div>
-          <div className="flex flex-row py-2">
-            <strong className="pr-2 ">Release Date:</strong> {releaseDate}
+          <div className="flex flex-row items-center">
+            <strong className="pr-2 text-electricblue ">Release Date:</strong>{' '}
+            {releaseDate}
           </div>
-        </div>
-      </div>
-    </div>
+        </UnderRightContainer>
+      </UnderContainer>
+    </InfoContainer>
   );
 };
 
